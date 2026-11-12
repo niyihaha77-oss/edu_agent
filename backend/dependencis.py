@@ -2,8 +2,10 @@ from typing import AsyncGenerator
 
 from sqlalchemy.ext.asyncio import create_async_engine,async_sessionmaker,AsyncSession
 
+from backend.config import get_settings
+
 engine = create_async_engine(
-    url="来自config",
+    url=get_settings().database_url,
     pool_size=10,# 连接池大小
     max_overflow=20,# 连接池最大溢出数
 )
