@@ -1,6 +1,11 @@
 from functools import lru_cache
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent   # 项目根目录
+ENV_FILE = BASE_DIR / ".env.local"
+
 
 
 class Settings(BaseSettings):
@@ -57,7 +62,7 @@ class Settings(BaseSettings):
     default_tenant_id: str = "tenant_default"  # 多租户默认值
 
     model_config = SettingsConfigDict(
-        env_file=".env.local",
+        env_file=ENV_FILE,
         env_file_encoding='utf-8',
         case_sensitive=False,# 大小写不敏感
         extra="ignore",
